@@ -1,0 +1,15 @@
+h4
+  | Visar tickets för
+  a href="/#{@target_user.id}/info" == " #{@target_user.name}"
+
+- if @tickets.length > 0
+  - @tickets.each do |ticket|
+      a href="/#{@user.id}/tickets/#{ticket.id}"
+        - uploaded = ticket.created
+        p
+          b == ticket.title
+          |  -
+          i == " #{uploaded.strftime('%H:%M %Y-%m-%d')}"
+          | #{ticket.closed? ? ' [Avklarad]' : ''}
+- else
+  p - Inga tickets -

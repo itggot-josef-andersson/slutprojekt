@@ -1,0 +1,12 @@
+- @information.each do |item|
+  div class="message-box"
+    ul class="message-box"
+      li class="message-box"
+        span class="message-box title" == item.title
+      li class="message-box"
+        span class="message-box author"
+          | av
+          i == " #{item.user.name}"
+      li class="message-box"
+        span class="message-box uploaded" == "(#{item.uploaded.strftime('%H:%M %Y-%m-%d')})"
+    p class="message-box message" == item.text

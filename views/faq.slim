@@ -1,0 +1,25 @@
+h2 Vanliga frågor
+
+- if @user.admin?
+  p Lägg till en fråga och svar
+  form(method="post" action="/admin/faq/add")
+    p
+      input(name="question" placeholder="Hur blir jag administratör?")
+    p
+      select(name="category")
+        option(value="-") -
+        - @categories.each do |category|
+          option(value="#{category.id}") == category.name
+    p
+      textarea(name="answer" placeholder="På Windows 10 så...")
+    p
+      input(type="submit" value="Lägg till")
+
+- if @answers
+  - @answers.each do |answer|
+    div.faq-container
+      h4.faq-question
+        a(href="/faq/#{answer.id}" id="aid_#{answer.id}") == answer.question
+  script(src="/res/js/faq.js")
+- else
+  p Inga vanliga frågor

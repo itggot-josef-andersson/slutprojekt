@@ -1,0 +1,14 @@
+h4
+  | Visar info för
+  == " #{@target_user.name}"
+
+p
+  | Antal tickets:
+  == " #{@target_user.tickets.length}"
+
+p
+  | Administratör:
+  == " #{@target_user.admin? ? 'ja' : 'nej'}"
+
+p
+  a href="/#{@target_user.id}/tickets" Se tickets

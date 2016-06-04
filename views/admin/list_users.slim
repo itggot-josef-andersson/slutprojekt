@@ -1,0 +1,24 @@
+p
+  nav
+    a href="/admin/view/users/all" Visa alla
+    |  |
+    a href="/admin/view/users/administrators"  Visa administratörer
+
+- if @users.length > 0
+  table
+    tr
+      th Namn
+      th Användarnamn
+      th Administratör
+      th Email
+      th Tickets
+    - @users.each do |user|
+      tr
+        td
+          a href="/#{user.id}/info" == user.name
+        td == user.username
+        td == user.admin?
+        td == user.mail
+        td == user.tickets.length
+- else
+    p Inga användare

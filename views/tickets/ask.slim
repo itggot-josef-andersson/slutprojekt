@@ -1,0 +1,15 @@
+form action="/ask" method="POST"
+  p
+    label for="title" Titel:
+    input type="text" name="title" id="title" placeholder="Skärmen är svart"
+  p
+    label for="category" Kategori:
+    select name="category" id="category"
+      option value="-" -
+      - @categories.each do |category|
+        option value="#{category.id}" == category.name
+  p
+    label for="description" Beskrivning:
+    textarea name="description" id="description" cols="30" rows="10" placeholder="Jag har testat att starta om men..."
+  p
+    input type="submit" value="Skapa"

@@ -1,0 +1,48 @@
+doctype html
+html lang="en"
+head
+  meta charset="UTF-8"
+  meta name="viewport" content="width=device-width, initial-scale=1"
+  link href='https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700' rel='stylesheet' type='text/css'
+  link rel="stylesheet" href="/res/css/global.css"
+  script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
+  script src="/res/js/global.js"
+  title ITG Helpdesk
+body
+  header
+    // graphic copyrighted to itgappen.se
+    a href="/"
+      svg version="1.1" class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 64" enable-background="new 0 0 100 64" xml:space="preserve"
+        g
+          path fill="#FFFFFF" d="M37.1,23.6h9.4c0,0,4.2-2.9,9-2.9c4.8,0,7.9,3.8,7.9,5.1H70c0,0-0.8-9.1-13.5-9.1 C43.8,16.7,37.1,23.6,37.1,23.6"
+          path fill="#FFFFFF" d="M34.2,25.8c0,0-2.4,2.7-3.2,4.5h16.7v10.9l5.8-3.7v-7.1h3.4l3.4-4.6H34.2z"
+          polygon fill="#FFFFFF" points="40.4,32.5 40.4,41.1 45.9,37.4 45.9,32.5"
+          path fill="#FFFFFF" d="M38.2,32.7h-7.8c0,0-3.9,14.6,14.1,14.6c0,0,6.8,0.6,15.4-4.3l2.1,2.9l7.3-11.1H55.3l2.2,4 c0,0-5.6,4.6-12.6,4.6C38,43.4,36.3,38,38.2,32.7"
+    // the menu list will exist on all pages
+    ul class="menu-list"
+      - [%w(/ Hem), ['/faq', 'Vanliga frågor'], ['/ask', 'Ställ en fråga']].each do |menu_items|
+        li class="menu-item left"
+          a href="#{ menu_items[0] }"
+            // If we are on the href of a button it will be styled as "selected"
+            div class="menu-button #{ @current_path == menu_items[0] ? 'selected' : '' }"
+              span class="menu-text" == menu_items[1]
+      - if @user
+        - [['/logout', 'Logga ut'], ["/#{@user.id}/tickets", 'Mina tickets']].each do |menu_items|
+          li class="menu-item right"
+            a href="#{ menu_items[0] }"
+              // If we are on the href of a button it will be styled as "selected"
+              div class="menu-button #{ @current_path == menu_items[0] ? 'selected' : '' }"
+                span class="menu-text" == menu_items[1]
+        - if @user.admin?
+          li class="menu-item right"
+            a href="/admin"
+              div class="menu-button #{ @current_path == '/admin' ? 'selected' : '' }"
+                span class="menu-text" Administration
+      - else
+        li class="menu-item right"
+          a href="/login"
+            div class="menu-button"
+              span class="menu-text" Logga in
+  section
+    div class="content"
+      == yield

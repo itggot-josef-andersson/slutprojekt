@@ -1,0 +1,92 @@
+body, header, section, ul, ol, li { margin: 0; padding: 0; color: #363636; }
+body   { background-image: url("/res/img/wall.jpg"); }
+header { background-color: #1a9ae7; }
+
+
+/* Menu list */
+ul.menu-list { background-color: #363636; list-style-type: none; overflow: hidden; font-family: 'Open Sans', sans-serif; font-size: 15px; }
+li.menu-item { vertical-align: middle; }
+div.menu-button       { background-color: #363636; padding: 13px 23px 13px 23px; color: #eee; }
+div.menu-button:hover { background-color: #262626; }
+div.menu-button.selected, div.menu-button.selected:hover { background-color: #1d4089; }
+span.menu-text { font-size: 15px; }
+
+
+div.site-wrap {
+    min-width: 100%;
+    min-height: 100%;
+    position:absolute;
+    right: 0;
+    top: 0;
+    bottom: 100%;
+    z-index: 1;
+}
+
+body { overflow-x: hidden; }
+
+
+
+/* The ITG logo at the top-left of the page */
+svg.logo {
+    min-width: 100px; min-height: 64px;
+    max-width: 300px; max-width: 192px;
+}
+
+div.content {
+    max-width: 870px;
+    width: 75%;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    background-color: #1a9ae7;
+}
+
+/* The "stickies" that represents information boxes on the home page */
+div.message-box { margin: 20px 10px; padding: 5px 10px; box-shadow: 4px 3px 9px #363636; background-color: #fff; }
+ul.message-box  { list-style-type: none; display: inline; }
+li.message-box  { vertical-align: bottom; display: inline; margin: 3px 2px; }
+span.message-box.title    { font-size: 24px; font-weight: 700; }
+span.message-box.author   { font-size: 14px; color: #c1c1c1; }
+span.message-box.uploaded { font-size: 10px; color: #c1c1c1; }
+span.message-box.category { font-size: 14px; color: #c1c1c1; }
+div.remove-button           { float:right; }
+div.remove-button img       { width: 20px; opacity: 0.4; }
+div.remove-button img:hover { opacity: 0.8; }
+
+/* On top of a tickets page there are some options buttons */
+div.options-box    { height: 7px; padding-right: 10px; }
+div.options-button {
+    border: 1px solid #555;
+    background-color: #8e9fff;
+    box-shadow: 0 0 1px #777 inset;
+    margin: -8px 5px 0 0;
+    padding: 5px;
+    float: right;
+    border-radius: 4px;
+    font-size: 11px;
+}
+div.options-button:hover {
+    background-color: #1d4089;
+}
+
+
+a, a:active, a:visited, a:hover { text-decoration: none; /* color: inherit; */ }
+a:hover { color: #9ac778; }
+
+
+/* Some elements just need the float and nothing else */
+.right { float: right; }
+.left  { float: left;  }
+
+/* Media fuckwit */
+@media (max-width: 760px) {
+    span.menu-text {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 660px) {
+
+
+}

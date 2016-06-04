@@ -1,0 +1,33 @@
+p
+  nav
+    a href="/admin/view/tickets/all" Visa alla
+    |  |
+    a href="/admin/view/tickets/unseen"  Visa osedda
+    |  |
+    a href="/admin/view/tickets/seen"  Visa sedda
+
+- if @tickets.length > 0
+  table
+    tr
+      th
+        a href="#{request.path_info}?sort_by=title" Titel
+      th
+        a href="#{request.path_info}?sort_by=category_id" Kategori
+      th
+        a href="#{request.path_info}?sort_by=user_id" Användare
+      th
+        a href="#{request.path_info}?sort_by=status" Status
+      th  Antal svar
+      th
+        a href="#{request.path_info}?sort_by=created" Tid
+    - @tickets.each do |ticket|
+      tr
+        td
+          a href="/#{ticket.user.id}/tickets/#{ticket.id}" == ticket.title
+        td == ticket.category.name
+        td == ticket.user.name
+        td == ticket.status
+        td == ticket.posts.length
+        td == ticket.created.strftime('%H:%M %Y-%m-%d')
+- else
+    p Inga tickets

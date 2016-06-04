@@ -1,0 +1,58 @@
+div class="options-box"
+  - if @ticket.user.id == @user.id || @user.admin?
+    - if @ticket.closed?
+      a href="/#{@target_user.id}/tickets/#{@ticket.id}/open"
+        div class="options-button"
+          span Markera som icke avklarad
+    - else
+      a href="/#{@target_user.id}/tickets/#{@ticket.id}/close"
+        div class="options-button"
+          span Markera som avklarad
+    a href="/#{@target_user.id}/tickets/#{@ticket.id}/remove"
+      div class="options-button"
+        span Ta bort
+    
+
+div class="message-box"
+  ul class="message-box"
+    li class="message-box"
+      span class="message-box title" == @ticket.title
+    li class="message-box"
+      span class="message-box category"
+        | [
+        == @ticket.category.name
+        | ]
+    li class="message-box"
+      span class="message-box author"
+        | av
+        i == " #{@ticket.user.name}"
+    li class="message-box"
+      span class="message-box uploaded"
+        == "(#{@ticket.created.strftime('%H:%M %Y-%m-%d')})"
+  p class="message-box message" == @ticket.description
+
+h4 Kommentarer:
+- if @posts.length > 0
+  - @posts.each do |post|
+    div class="post message-box" id="pid_#{post.id}"
+      - if @user.admin? || post.id == @user.id
+        div class="remove-button"
+          a href="/#{@target_user.id}/tickets/#{@ticket.id}/comment/remove/#{post.id}"
+            img src="/res/img/remove.png"
+      p
+        a href="/#{@target_user.id}/tickets/#{@ticket.id}#pid_#{post.id}"
+          | #
+          == post.id
+        == " #{post.user.name}"
+        span class="message-box uploaded"
+          == " (#{@ticket.created.strftime('%H:%M %Y-%m-%d')})"
+      p == post.text
+- else
+  p Inga kommentarer
+
+h5 Lägg till en kommentar:
+form action="/#{@target_user.id}/tickets/#{@ticket.id}/comment" method="POST"
+  p
+    textarea name="comment" id="comment" cols="30" rows="10" placeholder="Jag testade att stänga av och sätta på datorn men..."
+  p
+    input type="submit" value="Kommentera"
